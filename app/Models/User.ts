@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import UserType from './UserType'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -14,10 +15,6 @@ export default class User extends BaseModel {
   @column()
   public password: string
 
-/* ver futuramente se haverá login com google
-  @column()
-  public google_id_user: string
- */
   @column()
   public avatar: string
 
@@ -53,6 +50,9 @@ export default class User extends BaseModel {
 
   @column()
   public house_number: number
+
+  @belongsTo(() => UserType, { foreignKey: 'user_type_id' })
+  public user_types: BelongsTo<typeof UserType>
 
   @column()
   public telephone_number: number
