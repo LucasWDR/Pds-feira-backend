@@ -2,6 +2,8 @@ import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import UserType from './UserType'
 
+export type TypeUser = 'CLIENTE' | 'VENDEDOR' 
+
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
@@ -50,6 +52,9 @@ export default class User extends BaseModel {
 
   @column()
   public house_number: number
+
+  @column()
+  public user_type: TypeUser
 
   @belongsTo(() => UserType, { foreignKey: 'user_type_id' })
   public user_types: BelongsTo<typeof UserType>

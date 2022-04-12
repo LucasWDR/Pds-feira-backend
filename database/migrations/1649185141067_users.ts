@@ -18,6 +18,7 @@ export default class Users extends BaseSchema {
       table.string('uf', 2).notNullable()
       table.date('birth_date').notNullable()
       table.string('street_name', 40).notNullable()
+      table.enum('job_type', ['CLIENTE', 'VENDEDOR']).notNullable()
       table.string('neighbourhood_name', 40).notNullable()
       table.string('city_name', 30).notNullable()
       table.string('complement', 80)
