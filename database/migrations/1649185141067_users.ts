@@ -8,6 +8,7 @@ export default class Users extends BaseSchema {
       table.increments('id')
       table.string('name', 40).notNullable()
       table.string('email').unique().notNullable()
+      table.string('password').unique().notNullable()
       table.string('avatar', 240).notNullable()
       table.string('razao_social', 30).notNullable()
       table.bigInteger('telephone_number').notNullable()
