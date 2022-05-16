@@ -22,6 +22,9 @@ export default class User extends BaseModel {
   public avatar: string
 
   @column()
+  public birth_date: string
+
+  @column()
   public razao_social: string
 
   @column()
