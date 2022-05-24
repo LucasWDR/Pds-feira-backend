@@ -10,46 +10,9 @@ export default class UsersController {
 
   public async store({ request }: HttpContextContract) {
     const data = request.all();
-
-    if ((data.user_type = "VENDEDOR")) {
-      await User.create({
-        name: data.name,
-        email: data.email,
-        cnpj: data.cnpj,
-        password: data.password,
-        cep: data.cep,
-        uf: data.uf,
-        telephone_number: data.telephone_number,
-        birth_date: data.birth_date,
-        street_name: data.street_name,
-        neighbourhood_name: data.neighbourhood_name,
-        city_name: data.city_name,
-        complement: data.complement,
-        house_number: data.house_number
-
-      });
-      return data;
-    }
-
-    if ((data.user_type = "CLIENTE")) {
-        await User.create({
-          name: data.name,
-          email: data.email,
-          cnpj: data.null,
-          password: data.password,
-          cep: data.cep,
-          uf: data.uf,
-          telephone_number: data.telephone_number,
-          birth_date: data.birth_date,
-          street_name: data.street_name,
-          neighbourhood_name: data.neighbourhood_name,
-          city_name: data.city_name,
-          complement: data.complement,
-          house_number: data.house_number
-  
-        });
-        return data;
-      }
+    const createdUser = await User.create(data)
+    
+    return createdUser
 }
 
   public async show({}: HttpContextContract) {}
