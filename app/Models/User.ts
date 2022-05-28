@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import UserType from './UserType'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Alojamento from './Alojamento'
 
 export type TypeUser = 'CLIENTE' | 'VENDEDOR' 
 
@@ -56,6 +57,11 @@ export default class User extends BaseModel {
 
   @column()
   public user_type: TypeUser
+
+  @hasMany(() => Alojamento, {
+    foreignKey: 'id_vendedor',
+  })
+  public alojamento: HasMany<typeof Alojamento>
 
   @belongsTo(() => UserType, { foreignKey: 'user_type_id' })
   public user_types: BelongsTo<typeof UserType>
